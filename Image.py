@@ -9,7 +9,7 @@ class Image:
         self.__createPixels()
 
     def __createPixels(self):
-        self.pixels = [[-1 for _ in range(self.width)] for _ in range(self.height)] 
+        self.pixels = [[None for _ in range(self.width)] for _ in range(self.height)] 
 
 
     def set_pixel(self, x: int, y: int, color: Color):

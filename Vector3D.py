@@ -20,7 +20,6 @@ class Vector3D:
     def magnitude(self) -> float:
         return math.sqrt(self.dot_product(self))
 
-    @property
     def normalize(self) -> float:
         return self / self.magnitude
 
