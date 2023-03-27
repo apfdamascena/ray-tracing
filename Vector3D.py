@@ -36,6 +36,10 @@ class Vector3D:
     def __rmul__(self, const: float) -> Vector3D:
         return self.__mul__(const)
 
+    def __truediv__(self, const: float) -> Vector3D:
+        return self.__class__(self.x / const, self.y / const, self.z / const)
+
+
     
 
     
