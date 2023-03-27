@@ -1,8 +1,9 @@
-
+from __future__ import annotations
+import math
 
 class Vector3D:
 
-    def __init__(self, x=0.0, y=0.0, z=0.0):
+    def __init__(self, x=0.0, y=0.0, z=0.0) -> None:
         self.x = x
         self.y = y
         self.z = z
@@ -14,4 +15,33 @@ class Vector3D:
         assert isinstance(vector, Vector3D)
         dot = self.x * vector.x + self.y * vector.y + self.z * vector.z
         return dot
+
+    @property
+    def magnitude(self) -> float:
+        return math.sqrt(self.dot_product(self))
+
+    @property
+    def normalize(self) -> float:
+        return self / self.magnitude
+
+    def __add__(self, vector: Vector3D) -> Vector3D:
+        return self.__class__(self.x + vector.x, self.y + vector.y, self.z + vector.z)
+    
+    def __sub__(self, vector: Vector3D) -> Vector3D :
+        return self.__class__(self.x - vector.x, self.y - vector.y, self.z - vector.z)
+
+    def __mul__(self, const: float) -> Vector3D:
+        return self.__class__(self.x * const, self.y * const, self.z * const)
+
+    def __rmul__(self, const: float) -> Vector3D:
+        return self.__mul__(const)
+
+    
+
+    
+
+    
+        
+
+    
 
