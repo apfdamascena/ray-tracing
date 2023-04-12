@@ -13,9 +13,8 @@ from Material import Material
 if __name__ == "__main__":
     width = 320
     height = 200
-    camera = Camera(Point(0, 0, 0), Point(0,1,1), 2, height, width)
+    camera = Camera(Point(0, 0, 0), Point(0,0,1), 2, height, width)
     objects = [Sphere(Point(0.75, -0.1, 1),0.6, Material(Color.from_hex("#FF0000"), 0.2)),
-               Sphere(Point(0, 10000.5, 1), 10000, Material(Color.from_hex("#c3c3c3"))),
                Sphere(Point(-0.75, -0.1, 2.25), 0.6, Material(Color.from_hex("#0000FF")))
     ]
     lights = [

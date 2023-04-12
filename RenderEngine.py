@@ -10,21 +10,18 @@ class RenderEngine:
         height = scene.height
         camera = scene.camera
 
-        aspect_ratio = float(width) / height
-        x0 = -1.0
-        x1 = +1.0
-        xstep = (x1 - x0) / (width - 1)
-        y0 = -1.0 / aspect_ratio
-        y1 = +1.0 / aspect_ratio
-        ystep = (y1 - y0) / (height - 1)
+        z_vector = camera.origin - camera.screen_distance * camera.w
+        y_vector = (height / 2) * camera.v
+        x_vector = (width / 2 ) * camera.u
+        image_center = z_vector + (y_vector - x_vector)
 
         pixels = Image(width, height)
 
         for j in range(height):
-            y = y0 + j*ystep
             for i in range(width):
-                x = x0 + i * xstep
-                ray = Ray(camera.origin, Point(x,y) - camera.origin)
+                position = image_center + (camera.u * i - j * camera.v)
+                direction = (position - camera.origin).normalize()
+                ray = Ray(camera.origin, direction)
                 pixels.set_pixel(i, j, self.ray_trace(ray, scene))
         return pixels
 
