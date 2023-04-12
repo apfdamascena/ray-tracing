@@ -9,7 +9,7 @@ class RenderEngine:
         width = scene.width
         height = scene.height
         camera = scene.camera
-        
+
         aspect_ratio = float(width) / height
         x0 = -1.0
         x1 = +1.0
@@ -18,14 +18,13 @@ class RenderEngine:
         y1 = +1.0 / aspect_ratio
         ystep = (y1 - y0) / (height - 1)
 
-        camera = scene.camera
         pixels = Image(width, height)
 
         for j in range(height):
             y = y0 + j*ystep
             for i in range(width):
                 x = x0 + i * xstep
-                ray = Ray(camera, Point(x,y) - camera)
+                ray = Ray(camera.origin, Point(x,y) - camera.origin)
                 pixels.set_pixel(i, j, self.ray_trace(ray, scene))
         return pixels
 
@@ -55,7 +54,7 @@ class RenderEngine:
     def color_at(self, object_hit, hit_pos, normal, scene):
         material = object_hit.material
         object_color = material.color_at(hit_pos)
-        to_cam = scene.camera - hit_pos
+        to_cam = scene.camera.origin - hit_pos
         color = material.ambient * Color.from_hex("#FFFFFF")
         specular_k = 50
         
