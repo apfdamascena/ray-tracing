@@ -5,14 +5,9 @@ from Vector3D import Vector3D
 from Ray import Ray
 from Plane import Plane
 
+
 class Triangle(Object):
-    def __init__(
-        self,
-        material: Material,
-        a: Point,
-        b: Point,
-        c: Point
-    ):
+    def __init__(self, material: Material, a: Point, b: Point, c: Point):
         super().__init__(material)
 
         self.a = a
@@ -63,7 +58,12 @@ class Triangle(Object):
 
 
 class TriangleMesh(Object):
-    def __init__(self, material: Material, vertices: list[Point], indices: list[tuple[int, int, int]]):
+    def __init__(
+        self,
+        material: Material,
+        vertices: list[Point],
+        indices: list[tuple[int, int, int]],
+    ):
         super().__init__(material)
 
         self.triangles = [
@@ -85,14 +85,16 @@ class TriangleMesh(Object):
 
         return closest_intersection
 
-    def get_mesh(self) -> list[tuple[float, float, float]]:
-        mesh = []
+    def normal(self, surface_point) -> Vector3D:
+        closest_triangle = None
+        closest_distance = float("inf")
 
         for triangle in self.triangles:
-            a = triangle.a.to_tuple()
-            b = triangle.b.to_tuple()
-            c = triangle.c.to_tuple()
+            distance = triangle.intersect(
+                Ray(surface_point, triangle.normal(surface_point))
+            )
+            if distance is not None and distance < closest_distance:
+                closest_distance = distance
+                closest_triangle = triangle
 
-            mesh.extend([a, b, c])
-
-        return mesh
+        return closest_triangle.normal(surface_point)
