@@ -1,13 +1,15 @@
 from math import sqrt
+from Object import Object
+from Ray import Ray
 
-class Sphere:
+class Sphere(Object):
 
     def __init__(self, center, radius, material):
+        super().__init__(material)
         self.center = center
         self.radius = radius
-        self.material = material
 
-    def intersect(self, ray):
+    def intersect(self, ray: Ray):
         sphere_to_ray = ray.origin - self.center
         #a = 1
         b = 2 * ray.direction.dot_product(sphere_to_ray)
