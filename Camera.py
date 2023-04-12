@@ -3,7 +3,7 @@ from Vector3D import Vector3D
 
 
 class Camera:
-  def __init__(self, origin: Point, scene_center: Point, 
+  def __init__(self, origin: Point, scene_center: Point,
   screen_distance: float, screen_height: int, screen_width: int,
    vector_up: Vector3D = Vector3D(0,1,0)):
     self.origin = origin

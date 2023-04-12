@@ -18,6 +18,5 @@ class Plane(Object):
                 return distance
         return None
 
-
     def normal(self, surface_point):
         return self.normal_vector

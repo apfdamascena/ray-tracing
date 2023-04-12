@@ -47,14 +47,13 @@ class RenderEngine:
                 object_hit = obj
         return (distance_min, object_hit)
 
-    
     def color_at(self, object_hit, hit_pos, normal, scene):
         material = object_hit.material
         object_color = material.color_at(hit_pos)
         to_cam = scene.camera.origin - hit_pos
         color = material.ambient * Color.from_hex("#FFFFFF")
         specular_k = 50
-        
+
         #light calculations
         for light in scene.lights:
             to_light = Ray(hit_pos, light.position - hit_pos)

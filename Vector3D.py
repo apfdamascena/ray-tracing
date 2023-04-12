@@ -32,7 +32,7 @@ class Vector3D:
 
     def __add__(self, vector: Vector3D) -> Vector3D:
         return self.__class__(self.x + vector.x, self.y + vector.y, self.z + vector.z)
-    
+
     def __sub__(self, vector: Vector3D) -> Vector3D :
         return self.__class__(self.x - vector.x, self.y - vector.y, self.z - vector.z)
 
@@ -44,14 +44,3 @@ class Vector3D:
 
     def __truediv__(self, const: float) -> Vector3D:
         return self.__class__(self.x / const, self.y / const, self.z / const)
-
-
-    
-
-    
-
-    
-        
-
-    
-

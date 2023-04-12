@@ -14,7 +14,7 @@ class Triangle(Object):
         self.a = a
         self.b = b
         self.c = c
-  
+
         c_to_a = self.c - self.a
         b_to_a = self.b - self.a
         self._normal = c_to_a.cross_product(b_to_a).normalize()

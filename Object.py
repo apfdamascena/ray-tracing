@@ -10,4 +10,4 @@ class Object:
         pass
 
     def normal(self, surface_point):
-        pass 
+        pass

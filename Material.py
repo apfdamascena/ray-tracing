@@ -8,6 +8,5 @@ class Material:
         self.diffuse = diffuse
         self.specular = specular
 
-    
     def color_at(self, position):
         return self.color
