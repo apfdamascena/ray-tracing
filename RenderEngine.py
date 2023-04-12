@@ -8,6 +8,8 @@ class RenderEngine:
     def render(self, scene):
         width = scene.width
         height = scene.height
+        camera = scene.camera
+        
         aspect_ratio = float(width) / height
         x0 = -1.0
         x1 = +1.0

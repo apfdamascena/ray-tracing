@@ -16,6 +16,13 @@ class Vector3D:
         dot = self.x * vector.x + self.y * vector.y + self.z * vector.z
         return dot
 
+    def cross_product(self, other: Vector3D) -> Vector3D:
+        return self.__class__(
+            self.y*other.z - self.z*other.y,
+            self.z*other.x - self.x*other.z,
+            self.x*other.y - self.y*other.x
+        )
+
     @property
     def magnitude(self) -> float:
         return math.sqrt(self.dot_product(self))
