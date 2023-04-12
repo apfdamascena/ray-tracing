@@ -8,7 +8,7 @@ from Plane import Plane
 
 class Triangle(Object):
 
-    def __init__(self, material: Material, a=Point(0.1, 0, 0), b=Point(0, 0.1, 0), c=Point(0, 0, 0.1 )):
+    def __init__(self, material: Material, a=Point(20 , 0, 0), b=Point(0,20, 0), c=Point(0, 0, 20)):
         super().__init__(material)
 
         self.a = a
