@@ -31,7 +31,7 @@ class RenderEngine:
         distance_hit, object_hit = self.find_nearest(ray, scene)
 
         if object_hit is None:
-            return color
+            return scene.ambient_color
 
         hit_pos = ray.origin + ray.direction * distance_hit
         hit_normal = object_hit.normal(hit_pos)
