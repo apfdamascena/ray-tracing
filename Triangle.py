@@ -3,8 +3,6 @@ from Material import Material
 from Point import Point
 from Vector3D import Vector3D
 from Ray import Ray
-from Plane import Plane
-
 
 class Triangle(Object):
     def __init__(self, material: Material, a: Point, b: Point, c: Point):
@@ -60,9 +58,9 @@ class Triangle(Object):
 class TriangleMesh(Object):
     def __init__(
         self,
-        material: Material,
-        vertices: list[Point],
-        indices: list[tuple[int, int, int]],
+        material,
+        vertices,
+        indices
     ):
         super().__init__(material)
 
