@@ -9,7 +9,6 @@ from Triangle import TriangleMesh
 
 class ReaderFile:
 
-
     def read(self, path: str):
         objects = {}
         objects["objects-3d"] = []
@@ -51,7 +50,7 @@ class ReaderFile:
                     point = Point(float(values[10]), float(values[11]), float(values[12]))
                     objects["width"] = hres
                     objects["height"] = vres
-                    objects["camera"] = Camera(point, center, d, vres, hres, up)
+                    objects["camera"] = Camera(center, point, d, vres, hres, up)
 
                 elif values[0] == 'l':
                     position = Point(float(values[1]), float(values[2]), float(values[3]))
