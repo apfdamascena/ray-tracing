@@ -7,6 +7,7 @@ from Camera import Camera
 from Light import Light
 from Triangle import TriangleMesh
 
+## need refactoring the way of read file
 class ReaderFile:
 
     def read(self, path: str):
