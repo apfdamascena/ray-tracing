@@ -68,6 +68,36 @@ class ReaderFile:
                     color = Color(info[3]/255.0, info[4]/255.0, info[5]/255.0)
                     objects["lights"].append(Light(position, color))
 
+                
+                if object_to_create == "t":
+                    info = [float(value) for value in object_info[1::]]
+                    
+                    nt = int(info[0])
+                    nv = int(info[1])
+
+                    vertices = []
+                    index += 1
+
+                    for i in range(nv):
+                        vertice_info = lines[index + i]
+                        x, y, z = map(float, vertice_info)
+                        vertices.append(Point(x, y, z))
+                    index += nv
+
+                    indices = []
+                    for i in range(nt):
+                        indices_info = lines[index + i]
+                        a, b, c = map(int, indices_info)
+                        indices.append((a, b, c))
+                    index += nt
+
+                    values = [ float(value) for value in lines[index] ]
+                    color = Color(values[0]/255.0, values[1]/255.0, values[2]/255.0)
+                    kd, ks, ka, kr, kt, p = values[3::]
+                    material = Material(color, ka, kd, ks, roughness=p)
+
+                    # objects["objects-3d"].append(TriangleMesh(material, vertices, indices))
+
                 index += 1
         return objects
 
@@ -132,11 +162,12 @@ class ReaderFile:
             #             kd, ks, ka, kr, kt, p = map(float, values[3:])
             #             material = Material(color, ka, kd, ks, roughness=p)
 
-            #             objects["objects-3d"].append(TriangleMesh(material, vertices, indices))
+                        # objects["objects-3d"].append(TriangleMesh(material, vertices, indices))
         # return objects
 
 
 if __name__ == "__main__":
 
     reader = ReaderFile()
-    reader.read("./input.txt")
+    info = reader.read("./input.txt")
+    print(info)
