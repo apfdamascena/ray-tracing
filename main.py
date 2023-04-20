@@ -17,12 +17,9 @@ import asyncio
 async def main():
 
     input = ReaderFile()
-    # infos = input.read("./input.txt")
 
     info_result = await asyncio.gather(input.read("./input.txt"))
     infos = info_result[0]
-
-    print(infos)
 
     ambient_color = Color(0, 0, 0)
 
