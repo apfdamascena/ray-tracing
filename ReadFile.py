@@ -32,7 +32,7 @@ class ReaderFile:
                     radius = info[3]
                     
                     color = Color(info[4]/255.0, info[5]/255.0, info[6]/255.0)
-                    kd, ks, ka, kr, kt, p = info[7:]
+                    kd, ks, ka, kr, kt, p = info[7::]
                     material = Material(color, ka, kd, ks, roughness=p)
                     objects["objects-3d"].append(Sphere(center, radius, material))
 
@@ -58,13 +58,17 @@ class ReaderFile:
                     point = Point(info[0], info[1], info[2])
                     normal = Point(info[3], info[4], info[5])
                     color = Color(info[6]/255.0, info[7]/255.0, info[8]/255.0)
-                    kd, ks, ka, kr, kt, p = info[9:]
+                    kd, ks, ka, kr, kt, p = info[9::]
                     material = Material(color, ka, kd, ks, roughness=p)
                     objects["objects-3d"].append(Plane(material, point, normal))
 
-                
+                if object_to_create == "l":
+                    info = [float(value) for value in object_info[1::]]
+                    position = Point(info[0], info[1], info[2])
+                    color = Color(info[3]/255.0, info[4]/255.0, info[5]/255.0)
+                    objects["lights"].append(Light(position, color))
+
                 index += 1
-        print(objects)
         return objects
 
             # for line in file:
