@@ -11,7 +11,7 @@ from Triangle import TriangleMesh
 
 class ReaderFile:
 
-    def read(self, path: str):
+    async def read(self, path: str):
         objects = {}
         objects["objects-3d"] = []
         objects["lights"] = []
@@ -88,15 +88,17 @@ class ReaderFile:
                     for i in range(nt):
                         indices_info = lines[index + i]
                         a, b, c = map(int, indices_info)
-                        indices.append((a, b, c))
+                        indices.append((a-1, b-1, c-1))
                     index += nt
 
                     values = [ float(value) for value in lines[index] ]
                     color = Color(values[0]/255.0, values[1]/255.0, values[2]/255.0)
+
                     kd, ks, ka, kr, kt, p = values[3::]
+
                     material = Material(color, ka, kd, ks, roughness=p)
 
-                    # objects["objects-3d"].append(TriangleMesh(material, vertices, indices))
+                    objects["objects-3d"].append(TriangleMesh(material, vertices, indices))
 
                 index += 1
         return objects

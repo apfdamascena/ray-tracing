@@ -12,11 +12,15 @@ from Plane import Plane
 from Triangle import Triangle, TriangleMesh
 from ReadFile import ReaderFile
 from AffineTransformation import rotation, translation
+import asyncio
 
-if __name__ == "__main__":
+async def main():
 
     input = ReaderFile()
-    infos = input.read("./input.txt")
+    # infos = input.read("./input.txt")
+
+    info_result = await asyncio.gather(input.read("./input.txt"))
+    infos = info_result[0]
 
     print(infos)
 
@@ -26,6 +30,7 @@ if __name__ == "__main__":
         ambient_color = infos["ambient_color"]
 
     camera = infos["camera"]
+
     objects = infos["objects-3d"]
     lights = infos["lights"]
     width = infos["width"]
@@ -33,10 +38,45 @@ if __name__ == "__main__":
 
     scene = Scene(camera, objects, lights, width, height, ambient_color)
     engine = RenderEngine()
-    image = engine.render(scene)
+
+    image_result = await asyncio.gather(engine.render(scene))
+    # image = engine.render(scene)
 
     with open("firstImage.ppm", "w") as image_file:
-        image.write_image(image_file)
+        image_result[0].write_image(image_file)
+
+
+
+
+
+if __name__ == "__main__":
+
+    asyncio.run(main())
+
+    # input = ReaderFile()
+    # infos = input.read("./input.txt")
+
+    # ambient_color = Color(0, 0, 0)
+
+    # if "ambient_color" in infos:
+    #     ambient_color = infos["ambient_color"]
+
+    # camera = infos["camera"]
+
+    # objects = infos["objects-3d"]
+    # lights = infos["lights"]
+    # width = infos["width"]
+    # height = infos["height"]
+
+    # scene = Scene(camera, objects, lights, width, height, ambient_color)
+    # engine = RenderEngine()
+
+    # image = engine.render(scene)
+
+    
+
+    # with open("firstImage.ppm", "w") as image_file:
+    #     image.write_image(image_file)
 
     # width = 320
     # height = 200
@@ -78,5 +118,5 @@ if __name__ == "__main__":
 
     # image = engine.render(scene)
 
-    with open("firstImage.ppm", "w") as image_file:
-        image.write_image(image_file)
+    # with open("firstImage.ppm", "w") as image_file:
+    #     image.write_image(image_file)
