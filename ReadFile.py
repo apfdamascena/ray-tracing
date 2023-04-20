@@ -18,8 +18,55 @@ class ReaderFile:
 
 
         with open(path, 'r') as file:
-            lines = file.readlines()
-            print(lines)
+            lines = [ line.strip().split() for line in file.readlines()]
+            
+            index = 0
+            while index < len(lines):
+                object_info = lines[index]
+                object_to_create = object_info[0]
+
+                if object_to_create == "s":
+                    info = [float(value) for value in object_info[1::]]
+
+                    center = Point(info[0], info[1], info[2])
+                    radius = info[3]
+                    
+                    color = Color(info[4]/255.0, info[5]/255.0, info[6]/255.0)
+                    kd, ks, ka, kr, kt, p = info[7:]
+                    material = Material(color, ka, kd, ks, roughness=p)
+                    objects["objects-3d"].append(Sphere(center, radius, material))
+
+                if object_to_create == "c":
+                    info = [float(value) for value in object_info[1::]]
+                    hres = int(info[0])
+                    vres = int(info[1])
+                    d = info[2]
+                    up = Point(info[3], info[4], info[5])
+                    center = Point(info[6], info[7], info[8])
+                    point = Point(info[9], info[10], info[11])
+                    objects["width"] = hres
+                    objects["height"] = vres
+                    objects["camera"] = Camera(center, point, d, vres, hres, up)
+
+                if object_to_create == "a":
+                    info = [float(value) for value in object_info[1::]]
+                    ambient_color = Color(info[0]/255.0, info[1]/255.0, info[2]/255.0)
+                    objects["ambient_color"] = ambient_color
+
+                if object_to_create == "p":
+                    info = [float(value) for value in object_info[1::]]
+                    point = Point(info[0], info[1], info[2])
+                    normal = Point(info[3], info[4], info[5])
+                    color = Color(info[6]/255.0, info[7]/255.0, info[8]/255.0)
+                    kd, ks, ka, kr, kt, p = info[9:]
+                    material = Material(color, ka, kd, ks, roughness=p)
+                    objects["objects-3d"].append(Plane(material, point, normal))
+
+                
+                index += 1
+        print(objects)
+        return objects
+
             # for line in file:
             #     values = line.split()
 
