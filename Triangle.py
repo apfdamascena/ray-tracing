@@ -4,6 +4,7 @@ from Point import Point
 from Vector3D import Vector3D
 from Ray import Ray
 
+##https://www.scratchapixel.com/lessons/3d-basic-rendering/ray-tracing-polygon-mesh/ray-tracing-polygon-mesh-part-2.html
 class Triangle(Object):
     def __init__(self, material: Material, a: Point, b: Point, c: Point):
         super().__init__(material)
