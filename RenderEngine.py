@@ -5,7 +5,7 @@ from Color import Color
 
 class RenderEngine:
 
-    async def render(self, scene):
+    def render(self, scene):
         width = scene.width
         height = scene.height
         camera = scene.camera
