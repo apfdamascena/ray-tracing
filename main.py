@@ -14,12 +14,12 @@ from ReadFile import ReaderFile
 from AffineTransformation import rotation, translation
 import asyncio
 
-async def main():
+def main():
 
     input = ReaderFile()
 
-    info_result = await asyncio.gather(input.read("./input.txt"))
-    infos = info_result[0]
+    infos = input.read("./input.txt")
+
 
     ambient_color = Color(0, 0, 0)
 
@@ -36,17 +36,16 @@ async def main():
     scene = Scene(camera, objects, lights, width, height, ambient_color)
     engine = RenderEngine()
 
-    image_result = await asyncio.gather(engine.render(scene))
-    # image = engine.render(scene)
+    image = engine.render(scene)
 
     with open("firstImage.ppm", "w") as image_file:
-        image_result[0].write_image(image_file)
+        image.write_image(image_file)
 
 
 
 if __name__ == "__main__":
 
-    asyncio.run(main())
+    main()
 
     # width = 320
     # height = 200

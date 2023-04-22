@@ -12,7 +12,7 @@ import asyncio
 
 class ReaderFile:
 
-    async def read(self, path: str):
+    def read(self, path: str):
         objects = {}
         objects["objects-3d"] = []
         objects["lights"] = []
@@ -105,12 +105,6 @@ class ReaderFile:
         return objects
 
 
-
-async def main():
-    reader = ReaderFile()
-    info = await asyncio.gather(reader.read("./input.txt"))
-    print(info[0])
-
-
 if __name__ == "__main__":
-    asyncio.run(main())
+    reader = ReaderFile()
+    info = reader.read("./input.txt")
