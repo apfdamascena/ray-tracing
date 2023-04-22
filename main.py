@@ -50,31 +50,6 @@ if __name__ == "__main__":
 
     asyncio.run(main())
 
-    # input = ReaderFile()
-    # infos = input.read("./input.txt")
-
-    # ambient_color = Color(0, 0, 0)
-
-    # if "ambient_color" in infos:
-    #     ambient_color = infos["ambient_color"]
-
-    # camera = infos["camera"]
-
-    # objects = infos["objects-3d"]
-    # lights = infos["lights"]
-    # width = infos["width"]
-    # height = infos["height"]
-
-    # scene = Scene(camera, objects, lights, width, height, ambient_color)
-    # engine = RenderEngine()
-
-    # image = engine.render(scene)
-
-    
-
-    # with open("firstImage.ppm", "w") as image_file:
-    #     image.write_image(image_file)
-
     # width = 320
     # height = 200
     # camera = Camera(Point(0, 0, 0), Point(0, 0, 1), 50, height, width)
