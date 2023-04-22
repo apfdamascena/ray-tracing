@@ -68,6 +68,7 @@ class TriangleMesh(Object):
             Triangle(material, vertices[i], vertices[j], vertices[k])
             for i, j, k in indices
         ]
+
         self.vertices = vertices
         self.indices = indices
 

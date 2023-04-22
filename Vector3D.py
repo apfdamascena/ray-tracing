@@ -9,7 +9,7 @@ class Vector3D:
         self.z = z
 
     def __str__(self) -> str:
-        return f'({self.x}, {self.y}, {self.y})'
+        return f'({self.x}, {self.y}, {self.z})'
 
     def dot_product(self, vector: Vector3D) -> float:
         assert isinstance(vector, Vector3D)

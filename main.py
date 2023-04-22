@@ -46,6 +46,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+    teste = Sphere(Point(0.75, -0.1, 1), 0.6, Material(Color.from_hex("#FF0000"), 0.2))
 
     # width = 320
     # height = 200
