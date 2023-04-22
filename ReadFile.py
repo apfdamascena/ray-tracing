@@ -81,7 +81,6 @@ class ReaderFile:
 
                     for i in range(nv):
                         vertice_info = lines[index + i]
-                        print(vertice_info)
                         x, y, z = map(float, vertice_info)
                         vertices.append(Point(x, y, z))
                     index += nv
