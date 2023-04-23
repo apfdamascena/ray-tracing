@@ -32,7 +32,7 @@ class RenderEngine:
 
         if object_hit is None:
             return scene.ambient_color
-
+            
         hit_pos = ray.origin + ray.direction * distance_hit
         hit_normal = object_hit.normal(hit_pos)
         color += self.color_at(object_hit, hit_pos, hit_normal, scene)
