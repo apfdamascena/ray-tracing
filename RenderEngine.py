@@ -13,13 +13,13 @@ class RenderEngine:
         z_vector = camera.origin - camera.screen_distance * camera.w
         y_vector = (height / 2) * camera.v
         x_vector = (width / 2 ) * camera.u
-        image_center = z_vector + (y_vector - x_vector)
+        image_center = z_vector + 0.01* (y_vector - x_vector)
 
         pixels = Image(width, height)
 
         for j in range(height):
             for i in range(width):
-                position = image_center + (camera.u * i - j * camera.v)
+                position = image_center + 0.01* (camera.u * i - j * camera.v)
                 direction = (position - camera.origin).normalize()
                 ray = Ray(camera.origin, direction)
                 pixels.set_pixel(i, j, self.ray_trace(ray, scene))
@@ -29,7 +29,6 @@ class RenderEngine:
         color = Color(0,0,0)
         # find the nearest object hitted by the ray
         distance_hit, object_hit = self.find_nearest(ray, scene)
-
         if object_hit is None:
             return scene.ambient_color
             

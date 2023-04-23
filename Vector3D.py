@@ -17,6 +17,7 @@ class Vector3D:
         return dot
 
     def cross_product(self, other: Vector3D) -> Vector3D:
+        assert isinstance(other, Vector3D)
         return self.__class__(
             self.y*other.z - self.z*other.y,
             self.z*other.x - self.x*other.z,
@@ -43,4 +44,5 @@ class Vector3D:
         return self.__mul__(const)
 
     def __truediv__(self, const: float) -> Vector3D:
+        const = const or 1
         return self.__class__(self.x / const, self.y / const, self.z / const)
