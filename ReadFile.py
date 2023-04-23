@@ -90,7 +90,7 @@ class ReaderFile:
                     for i in range(nt):
                         indices_info = lines[index + i]
                         a, b, c = map(int, indices_info)
-                        indices.append((a, b, c))
+                        indices.append((a-1, b-1, c-1))
                     index += nt
                     
                     values = [ float(value) for value in lines[index]]
