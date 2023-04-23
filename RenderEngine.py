@@ -14,13 +14,13 @@ class RenderEngine:
         z_vector = camera.origin - camera.screen_distance * camera.w
         y_vector = (height / 2) * camera.v
         x_vector = (width / 2 ) * camera.u
-        image_center = z_vector + 0.2 *(y_vector - x_vector)
+        image_center = z_vector + 0.4 *(y_vector - x_vector)
 
         pixels = Image(width, height)
 
         for j in range(height):
             for i in range(width):
-                position = image_center + 0.2 * (camera.u * i - j * camera.v)
+                position = image_center + 0.4 * (camera.u * i - j * camera.v)
                 direction = (position - camera.origin).normalize()
                 ray = Ray(camera.origin, direction)
                 pixels.set_pixel(i, j, self.ray_trace(ray, scene))
