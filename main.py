@@ -17,9 +17,7 @@ import asyncio
 def main():
 
     input = ReaderFile()
-
     infos = input.read("./input.txt")
-
 
     ambient_color = Color(0, 0, 0)
 
@@ -27,7 +25,6 @@ def main():
         ambient_color = infos["ambient_color"]
 
     camera = infos["camera"]
-
     objects = infos["objects-3d"]
     lights = infos["lights"]
     width = infos["width"]
@@ -46,47 +43,3 @@ def main():
 if __name__ == "__main__":
 
     main()
-    teste = Sphere(Point(0.75, -0.1, 1), 0.6, Material(Color.from_hex("#FF0000"), 0.2))
-
-    # width = 320
-    # height = 200
-    # camera = Camera(Point(0, 0, 0), Point(0, 0, 1), 50, height, width)
-    # objects = [
-    #     Sphere(Point(0.75, -0.1, 1), 0.6, Material(Color.from_hex("#FF0000"), 0.2)),
-    #     Sphere(Point(-1.5, -0.1, 2.25), 0.6, Material(Color.from_hex("#0000FF"))),
-    #     Plane(
-    #         Material(Color.from_hex("#FF0000"), 0.2),
-    #         Point(0, 0.8, 0.2),
-    #         Point(0, 0.8, 0),
-    #     ),
-    #     # Triangle(
-    #     #     Material(Color.from_hex("#FFFFFF"), 0.2),
-    #     #     a=Point(0.14, -0.1, 1.61),
-    #     #     b=Point(-0.75, 0.9, 1.6),
-    #     #     c=Point(-0.751, -0.11, 1.62),
-    #     # ),
-    #     TriangleMesh(
-    #         material=Material(Color.from_hex("#FFFFFF"), 0.2),
-    #         vertices=[
-    #             Point(0.14, -0.1, 2.2),
-    #             Point(-0.75, 0.9, 2.2),
-    #             Point(-0.751, -0.11, 2.2),
-    #             Point(0.5, 0.1, 2.2),
-    #             Point(-0.3, 0.5, 2.2),
-    #         ],
-    #         indices=[
-    #             (0, 1, 2),
-    #             (0, 3, 4),
-    #         ],
-    #     ),
-    # ]
-
-    # lights = [Light(Point(1.5, -0.5, -10.0), Color.from_hex("#FFFFFF"))]
-
-    # scene = Scene(camera, objects, lights, width, height)
-    # engine = RenderEngine()
-
-    # image = engine.render(scene)
-
-    # with open("firstImage.ppm", "w") as image_file:
-    #     image.write_image(image_file)

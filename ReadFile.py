@@ -17,7 +17,6 @@ class ReaderFile:
         objects["objects-3d"] = []
         objects["lights"] = []
 
-
         with open(path, 'r') as file:
             lines = [ line.strip().split() for line in file.readlines()]
             
@@ -90,7 +89,7 @@ class ReaderFile:
                     for i in range(nt):
                         indices_info = lines[index + i]
                         a, b, c = map(int, indices_info)
-                        indices.append((a, b, c))
+                        indices.append((a-1, b-1, c-1))
                     index += nt
                     
                     values = [ float(value) for value in lines[index]]
@@ -99,6 +98,9 @@ class ReaderFile:
                     kd, ks, ka, kr, kt, p = values[3::]
 
                     material = Material(color, ka, kd, ks, roughness=p)
+
+                    print(vertices)
+                    print(indices)
 
                     objects["objects-3d"].append(TriangleMesh(material, vertices, indices))
 
