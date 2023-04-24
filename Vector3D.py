@@ -17,6 +17,7 @@ class Vector3D:
         return dot
 
     def cross_product(self, other: Vector3D) -> Vector3D:
+        assert isinstance(other, Vector3D)
         return self.__class__(
             self.y*other.z - self.z*other.y,
             self.z*other.x - self.x*other.z,

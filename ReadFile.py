@@ -17,7 +17,6 @@ class ReaderFile:
         objects["objects-3d"] = []
         objects["lights"] = []
 
-
         with open(path, 'r') as file:
             lines = [ line.strip().split() for line in file.readlines()]
             
