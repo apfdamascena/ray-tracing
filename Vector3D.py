@@ -24,6 +24,9 @@ class Vector3D:
             self.x*other.y - self.y*other.x
         )
 
+    def kron_product(self, other: Vector3D) -> Vector3D:
+        return self.__class__((self.x * other.x), (self.y * other.y), (self.z * other.z))
+
     @property
     def magnitude(self) -> float:
         return math.sqrt(self.dot_product(self))
@@ -46,3 +49,9 @@ class Vector3D:
     def __truediv__(self, const: float) -> Vector3D:
         const = const or 1
         return self.__class__(self.x / const, self.y / const, self.z / const)
+
+    def __neg__(self) -> Vector3:
+        return self.__class__(-self.x, -self.y, -self.z)
+
+    def __xor__(self, othervector: Vector3):
+        return self.dot_product(othervector)

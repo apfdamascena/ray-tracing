@@ -99,9 +99,6 @@ class ReaderFile:
 
                     material = Material(color, ka, kd, ks, roughness=p)
 
-                    print(vertices)
-                    print(indices)
-
                     objects["objects-3d"].append(TriangleMesh(material, vertices, indices))
 
                 index += 1

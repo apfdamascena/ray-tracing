@@ -22,6 +22,7 @@ class Image:
                 x = self.to_byte(color.x)
                 y = self.to_byte(color.y)
                 z = self.to_byte(color.z)
+
                 image_file.write(f"{x} {y} {z} ")
             image_file.write("\n")
 
