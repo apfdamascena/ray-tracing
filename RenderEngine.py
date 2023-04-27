@@ -46,7 +46,7 @@ class RenderEngine:
             material_hitted = object_hit.material
             if material_hitted.reflection > 0:
                 omega = -ray.direction
-                normal = normal_hit
+                normal = hit_normal
 
                 normal = -normal if omega ^ normal < 0 else normal
 
@@ -57,7 +57,7 @@ class RenderEngine:
 
             if material_hitted.refraction > 0:
                 omega = -ray.direction
-                normal = normal_hit
+                normal = hit_normal
                 relative_refraction = material_hitted.refraction
 
                 relative_refraction = 1/material_hitted.refraction if omega ^ normal < 0 else relative_refraction
@@ -71,7 +71,7 @@ class RenderEngine:
                 new_ray_position = hit_pos - normal * 0.001
                 new_ray = Ray(new_ray_position, new_ray_direction)
 
-                color += self.rayTrace(new_ray, scene, depth +1) * material_hitted.transmission
+                color += self.ray_trace(new_ray, scene, depth +1) * material_hitted.transmission
             else:
                 new_ray_position = hit_pos + normal * 0.001
                 new_ray_direction = ray.direction - 2 * ray.direction.dot_product(normal) * normal

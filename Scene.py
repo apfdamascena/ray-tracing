@@ -4,7 +4,7 @@ from Color import Color
 
 class Scene:
 
-    def __init__(self, camera, objects, lights, width, height, ambient_color = Color.from_hex("#000000"), end_depth = 0):
+    def __init__(self, camera, objects, lights, width, height, ambient_color = Color.from_hex("#000000"), end_depth = 5):
         self.camera = camera
         self.objects = objects
         self.width = width
