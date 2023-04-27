@@ -33,7 +33,7 @@ class ReaderFile:
                     
                     color = Color(info[4]/255.0, info[5]/255.0, info[6]/255.0)
                     kd, ks, ka, kr, kt, p = info[7::]
-                    material = Material(color, ka, kd, ks, roughness=p)
+                    material = Material(color, ka, kd, ks, kr, kt, roughness=p)
                     objects["objects-3d"].append(Sphere(center, radius, material))
 
                 if object_to_create == "c":
@@ -59,7 +59,7 @@ class ReaderFile:
                     normal = Point(info[3], info[4], info[5])
                     color = Color(info[6]/255.0, info[7]/255.0, info[8]/255.0)
                     kd, ks, ka, kr, kt, p = info[9::]
-                    material = Material(color, ka, kd, ks, roughness=p)
+                    material = Material(color, ka, kd, ks, kr, kt,  roughness=p)
                     objects["objects-3d"].append(Plane(material, point, normal))
 
                 if object_to_create == "l":
@@ -97,7 +97,7 @@ class ReaderFile:
 
                     kd, ks, ka, kr, kt, p = values[3::]
 
-                    material = Material(color, ka, kd, ks, roughness=p)
+                    material = Material(color, ka, kd, ks, kr, kt, roughness=p)
 
                     objects["objects-3d"].append(TriangleMesh(material, vertices, indices))
 
