@@ -19,7 +19,7 @@ class ReaderFile:
 
         with open(path, 'r') as file:
             lines = [ line.strip().split() for line in file.readlines()]
-            
+
             index = 0
             while index < len(lines):
                 object_info = lines[index]
@@ -30,7 +30,7 @@ class ReaderFile:
 
                     center = Point(info[0], info[1], info[2])
                     radius = info[3]
-                    
+
                     color = Color(info[4]/255.0, info[5]/255.0, info[6]/255.0)
                     kd, ks, ka, kr, kt, p = info[7::]
                     material = Material(color, ka, kd, ks, kr, kt, roughness=p)
@@ -68,10 +68,10 @@ class ReaderFile:
                     color = Color(info[3]/255.0, info[4]/255.0, info[5]/255.0)
                     objects["lights"].append(Light(position, color))
 
-                
+
                 if object_to_create == "t":
                     info = [float(value) for value in object_info[1::]]
-                    
+
                     nt = int(info[0])
                     nv = int(info[1])
 
@@ -91,7 +91,7 @@ class ReaderFile:
                         a, b, c = map(int, indices_info)
                         indices.append((a-1, b-1, c-1))
                     index += nt
-                    
+
                     values = [ float(value) for value in lines[index]]
                     color = Color(values[0]/255.0, values[1]/255.0, values[2]/255.0)
 
